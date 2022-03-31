@@ -2,7 +2,8 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
-
+import java.util.ArrayList;
+import java.util.List;
 
 
 import java.time.LocalTime;
@@ -45,6 +46,21 @@ class RestaurantTest {
 
     }
 
+    //test method for TDD section
+    @Test
+    public void get_Order_Total_should_return_the_total_price_value_of_list_of_items_passed_as_arguement(){
+        LocalTime openingTime = LocalTime.parse("10:30:00");
+        LocalTime closingTime = LocalTime.parse("22:00:00");
+        restaurant =new Restaurant("TDD's cafe","Bengaluru",openingTime,closingTime);
+        restaurant.addToMenu("Sweet corn soup",100);
+        restaurant.addToMenu("Vegetable lasagne", 250);
+        restaurant.addToMenu("Sizzling brownie",319);
+        List<String> list = new ArrayList<String>();
+        list.add("Sweet corn soup");
+        list.add("Vegetable lasagne");
+        int total = restaurant.getOrderTotal(list);
+        assertEquals(350, total);
+    }
 
     //<<<<<<<<<<<<<<<<<<<<<<<<<OPEN/CLOSED>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 
